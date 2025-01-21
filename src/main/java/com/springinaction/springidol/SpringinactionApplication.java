@@ -9,8 +9,8 @@ public class SpringinactionApplication {
 	public static void main(String[] args) throws PerformanceException {
 		ApplicationContext context = new ClassPathXmlApplicationContext(
 				"spring-idol.xml");
-		Performer performer = (Performer) context.getBean("duke");
-		performer.perform(); // Juggling 3 BEANBAGS
+		Performer performer = (Performer) context.getBean("poeticDuke");
+		performer.perform();
 
 	}
 

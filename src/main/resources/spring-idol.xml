@@ -3,8 +3,18 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
  http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
-    <!-- Здесь должны находиться объявления компонентов -->
 
-    <!--    Объявление бина-->
-    <bean id="duke" class="com.springinaction.springidol.Juggler" />
+    <bean id="sonnet29" class="com.springinaction.springidol.Sonnet29"/>
+
+    <!--    Осталось только передать выбранную поэму Дюку. Теперь, когда Дюк стал поэтическим жонглером (PoeticJuggler), -->
+    <!--    его описание в элементе <bean> следует немного изменить-->
+    <bean id="poeticDuke"  class="com.springinaction.springidol.PoeticJuggler">
+        <constructor-arg value="15" />
+
+<!--        Однако использовать атрибут value для инициализации второго-->
+<!--        аргумента конструктора нельзя, потому что Poem не является проcтым типом. -->
+<!--        Для передачи ссылок на другие компоненты следует иcпользовать атрибут ref .-->
+        <constructor-arg ref="sonnet29" />
+    </bean>
+
 </beans>
