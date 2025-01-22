@@ -4,23 +4,16 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
  http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 
-    <bean id="sonnet29" class="com.springinaction.springidol.Sonnet29"/>
+        <!-- ____Внедрение простых значений____-->
+    <bean id="kenny" class="com.springinaction.springidol.Instrumentalist">
 
-    <!--    Осталось только передать выбранную поэму Дюку. Теперь, когда Дюк стал поэтическим жонглером (PoeticJuggler), -->
-    <!--    его описание в элементе <bean> следует немного изменить-->
-    <bean id="poeticDuke"  class="com.springinaction.springidol.PoeticJuggler">
-        <constructor-arg value="15" />
+<!--        Элемент <property> во многом схож с элементом-->
+<!--        <constructor-arg>, за исключением того, что вместо внедрения значений -->
+<!--        через аргументы конструктора элемент <property> вызывает метод записи свойства-->
 
-<!--        Однако использовать атрибут value для инициализации второго-->
-<!--        аргумента конструктора нельзя, потому что Poem не является проcтым типом. -->
-<!--        Для передачи ссылок на другие компоненты следует иcпользовать атрибут ref .-->
-        <constructor-arg ref="sonnet29" />
+<!--        То есть, элемент <property> в этом фрагменте XML предписывает фреймворку Spring вызвать-->
+<!--        метод setSong() для записи значения "Jingle Bells" в свойство song.-->
+        <property name="song" value="Jingle Bells"/>
     </bean>
-
-    <bean id= "auditorium"
-          class="com.springinaction.springidol.Auditorium"
-          init-method="turnOnLight"
-          destroy-method="turnOffLight"
-    />
 
 </beans>
