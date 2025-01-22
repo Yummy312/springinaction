@@ -17,4 +17,10 @@
         <constructor-arg ref="sonnet29" />
     </bean>
 
+    <bean id= "auditorium"
+          class="com.springinaction.springidol.Auditorium"
+          init-method="turnOnLight"
+          destroy-method="turnOffLight"
+    />
+
 </beans>
