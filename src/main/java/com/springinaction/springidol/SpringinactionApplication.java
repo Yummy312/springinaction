@@ -11,7 +11,7 @@ public class SpringinactionApplication {
 
 		Instrumentalist instrumentalist = context.getBean("kenny", Instrumentalist.class);
 
-		instrumentalist.perform(); // Playing Jingle Bells :
+		instrumentalist.perform(); //  Playing Jingle Bells : TOOT TOOT TOOT
 
 
 

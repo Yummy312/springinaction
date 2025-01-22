@@ -12,7 +12,7 @@ public class Instrumentalist implements Performer {
     }
     public void perform() throws PerformanceException {
         System.out.print("Playing " + song + " : ");
-//        instrument.play();
+        instrument.play();
     }
     private String song;
     public void setSong(String song) { // Внедрение мелодии

@@ -4,16 +4,15 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
  http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 
-        <!-- ____Внедрение простых значений____-->
+
     <bean id="kenny" class="com.springinaction.springidol.Instrumentalist">
-
-<!--        Элемент <property> во многом схож с элементом-->
-<!--        <constructor-arg>, за исключением того, что вместо внедрения значений -->
-<!--        через аргументы конструктора элемент <property> вызывает метод записи свойства-->
-
-<!--        То есть, элемент <property> в этом фрагменте XML предписывает фреймворку Spring вызвать-->
-<!--        метод setSong() для записи значения "Jingle Bells" в свойство song.-->
         <property name="song" value="Jingle Bells"/>
+
+<!--        Внедрение ссылки на компонент saxophone-->
+        <property name="instrument" ref="saxophone"/>
     </bean>
+
+    <bean id="saxophone"
+          class="com.springinaction.springidol.Saxophone" />
 
 </beans>
