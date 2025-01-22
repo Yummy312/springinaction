@@ -9,12 +9,12 @@ public class SpringinactionApplication {
 		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(
 				"spring-idol.xml");
 
-		Instrumentalist instrumentalist = context.getBean("kenny", Instrumentalist.class);
+		OneManBand oneManBand = context.getBean("oneManBand", OneManBand.class);
 
-		instrumentalist.perform(); //  Playing Jingle Bells : TOOT TOOT TOOT
-
-
-
+		oneManBand.perform(); // Twang-twang
+					          // Tsss...
+		                      // Whee-woo
+		
 	}
 
 

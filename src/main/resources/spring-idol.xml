@@ -4,15 +4,32 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
  http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 
+    <!--Создаем бины для коллекции-->
+    <bean id="electricGuitar" class="com.springinaction.springidol.ElectricGuitar"/>
+    <bean id="cymbal" class="com.springinaction.springidol.Cymbal"/>
+    <bean id="harmonica" class="com.springinaction.springidol.Harmonica"/>
 
-    <bean id="kenny" class="com.springinaction.springidol.Instrumentalist">
-        <property name="song" value="Jingle Bells"/>
 
-<!--        Внедрение ссылки на компонент saxophone-->
-        <property name="instrument" ref="saxophone"/>
+    <!-- До сих пор демонстрировались особенности определения простых-->
+    <!-- значений свойств (с помощью атрибута value) и ссылок на другие-->
+    <!-- компоненты (с помощью атрибута ref). Однако атрибуты value и ref-->
+    <!--можно использовать, только когда свойства компонента содержат-->
+    <!--единственное значение.-->
+
+    <!--Элементы <list> и <set> можно использовать для настройки-->
+    <!-- свойств, которые являются массивами или одной из реализаций-->
+    <!-- java.util.Collection .-->
+    <!--<list> - Связывание списка значений, допускаются повторяющиеся значения-->
+    <!-- <set> - Cвязывание множества значений, гарантирует отсутствие повторяющихся значений-->
+
+    <bean id="oneManBand" class="com.springinaction.springidol.OneManBand">
+        <property name="instruments">
+            <list>
+                <ref bean="electricGuitar"/>
+                <ref bean="cymbal"/>
+                <ref bean="harmonica"/>
+            </list>
+        </property>
     </bean>
-
-    <bean id="saxophone"
-          class="com.springinaction.springidol.Saxophone" />
 
 </beans>
