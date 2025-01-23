@@ -11,9 +11,9 @@ public class SpringinactionApplication {
 
 		OneManBand oneManBand = context.getBean("oneManBand", OneManBand.class);
 
-		oneManBand.perform(); // Twang-twang
-					          // Tsss...
-		                      // Whee-woo
+		oneManBand.perform(); // ELECTRICGUITAR : Twang-twang
+		                      // CYMBAL : Tsss...
+		                      // HARMONICA : Whee-woo
 		
 	}
 
