@@ -4,39 +4,44 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
  http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 
-    <!--Создаем бины для коллекции-->
-    <bean id="electricGuitar" class="com.springinaction.springidol.ElectricGuitar"/>
-    <bean id="cymbal" class="com.springinaction.springidol.Cymbal"/>
-    <bean id="harmonica" class="com.springinaction.springidol.Harmonica"/>
 
-<!--    В новой версии класса OneManBand свойство instruments имеет тип-->
-<!--    отображения java.util.Map , каждый член которого имеет ключ типа-->
-<!--    String и значение типа Instrument. Так как члены отображения представлены -->
-<!--    парами ключ/значение, простых элементов <list> или <set> будет недостаточно для связывания свойства.-->
-<!--    Вместо этого для конфигурирования свойства instruments в следующем объявлении компонента oneManBand используется -->
-<!--    элемент <map>:-->
+<!--    Название Spell (в переводе с английского — «заклинание») было выбрано,-->
+<!--    поскольку он позволяет "волшебным" образом вызывать вычисления прямо внутри текста,-->
+<!--    делая код проще и понятнее. В языке выражений Spell конструкция #{} используется-->
+<!--    для вставки выражений в строку, что напоминает интерполяцию строк в других языках программирования.-->
 
-    <bean id="oneManBand" class="com.springinaction.springidol.OneManBand">
-        <property name="instruments">
-            <map>
-<!--                В нашем примере атрибут key используется для определения-->
-<!--                строкового ключа, а атрибут value-ref – для определения ссылочного значения, однако-->
-<!--                в действительности каждый элемент <entry> имеет по два атрибута для определения ключа и значения-->
-<!--                элемента отображения. Эти атрибуты перечислены в табл. 2.4-->
+<!--    Литерал — это конкретное значение, которое записывается напрямую в коде программы-->
+<!--    и интерпретируется как неизменяемое. Литералы представляют собой базовые элементы данных,-->
+<!--    такие как числа, строки, булевы значения, символы и т.д.-->
 
-<!--                табл. 2.4 -->
-<!--                key -  Определяет ключ элемента отображения как строку-->
-<!--                key-ref -  Определяет ключ элемента отображения как ссылку на компонент-->
-<!--                в контексте Spring-->
-<!--                value -  Определяет значение элемента отображения как строку-->
-<!--                value-ref -  Определяет значение элемента отображения как ссылку-->
-<!--                на компонент в контексте Spring-->
 
-                <entry key="ELECTRICGUITAR" value-ref="electricGuitar"/>
-                <entry key="CYMBAL" value-ref="cymbal"/>
-                <entry key="HARMONICA" value-ref="harmonica"/>
-            </map>
-        </property>
+<!--    результатом этого выражения является целое число 5-->
+    <bean id="counter" class="com.springinaction.springidol.Counter">
+        <property name="count" value="#{5}"/>
     </bean>
+
+    <!--    результатом этого выражения является строка: The value -->
+    <bean id="message" class="com.springinaction.springidol.Message">
+        <property name="message" value="#{'The value'}"/>
+    </bean>
+
+<!--    результатом этого выражения является вещественное число-->
+    <bean id="temperature" class="com.springinaction.springidol.Temperature">
+        <property name="frequency" value="#{89.7}"/>
+    </bean>
+
+<!--    Числа могут записываться в научной форме записи. Как показано в следующем фрагменте,
+который присваивает значение 10000.0  свойству capacity-->
+    <bean id="car" class="com.springinaction.springidol.Car">
+        <property name="capacity" value="#{1e4}"/>
+    </bean>
+
+
+<!--    Для определения логических значений можно использовать пару-->
+<!--    литералов true и false. Например, значение false можно выразить так:-->
+    <bean id="button" class="com.springinaction.springidol.Button">
+        <property name="enabled" value="#{false}"/>
+    </bean>
+
 
 </beans>
