@@ -9,21 +9,18 @@ public class SpringinactionApplication {
 		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(
 				"spring-idol.xml");
 
-		Counter counter = context.getBean("counter", Counter.class);
-		System.out.println(counter.getCount()); // 5
+		// Кенни
+		Instrumentalist kenny = context.getBean("kenny", Instrumentalist.class);
+		kenny.perform(); // Playing 'Pubg theme music' : TOOT TOOT TOOT
 
-		Message message = context.getBean("message", Message.class);
-		System.out.println(message.getMessage()); // The value
+		// Карл исполняет ту же песню, что и Кенни
+		Instrumentalist carl = context.getBean("carl", Instrumentalist.class);
+		carl.perform(); // Playing 'Pubg theme music' : TOOT TOOT TOOT
+
+		Instrumentalist jeremy = context.getBean("jeremy", Instrumentalist.class);
+		jeremy.perform(); // Playing {песня}: TOOT TOOT TOOT
 
 
-		Temperature temperature = context.getBean("temperature", Temperature.class);
-		System.out.println(temperature.getFrequency()); // 89.7
-
-		Car car = context.getBean("car", Car.class);
-		System.out.println(car.getCapacity()); // 10000.0
-
-		Button button = context.getBean("button", Button.class);
-		System.out.println(button.getEnabled()); // false
 	}
 
 
