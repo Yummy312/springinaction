@@ -9,16 +9,11 @@ public class SpringinactionApplication {
 		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(
 				"spring-idol.xml");
 
-		// Кенни
-		Instrumentalist kenny = context.getBean("kenny", Instrumentalist.class);
-		kenny.perform(); // Playing 'Pubg theme music' : TOOT TOOT TOOT
+		SomeClass someObject1 = context.getBean("someObject1", SomeClass.class);
+		System.out.println(someObject1.getMultiplier()); // 3.141592653589793
 
-		// Карл исполняет ту же песню, что и Кенни
-		Instrumentalist carl = context.getBean("carl", Instrumentalist.class);
-		carl.perform(); // Playing 'Pubg theme music' : TOOT TOOT TOOT
-
-		Instrumentalist jeremy = context.getBean("jeremy", Instrumentalist.class);
-		jeremy.perform(); // Playing {песня}: TOOT TOOT TOOT
+		SomeClass someObject2 = context.getBean("someObject2", SomeClass.class);
+		System.out.println(someObject1.getRandomNumber()); // 0.0
 
 
 	}

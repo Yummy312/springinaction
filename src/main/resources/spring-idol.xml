@@ -4,42 +4,31 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
  http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 
-    <bean id="saxophone" class="com.springinaction.springidol.Saxophone"/>
+<!--    Создание выражений, манипулирующих другими компонентами, – отличное начало. -->
+<!--    Но что, если потребуется вызвать статический метод класса или получить значение константы? -->
+<!--    Для этого необходимо познакомиться с особенностями использования типов-->
+<!--    в языке SpEL-->
 
-    <bean id="kenny" class="com.springinaction.springidol.Instrumentalist">
-        <property name="song" value="'Pubg theme music'"/>
+<!--   ___ Использование типов ___-->
+<!--    Ключом к использованию методов класса и констант в языке-->
+<!--    SpEL является оператор T() .-->
 
-        <!--    ___Внедрение другого компонента в свойство компонента___-->
-        <!--    Другой основной особенностью выражений на языке SpEL-->
-        <!--    является возможность ссылаться на другие компоненты по их идентификаторам .-->
-        <!--    Например, с помощью выражения на языке SpEL можно внедрить компонент в свойство другого компонента:-->
-        <property name="instrument" value="#{saxophone}"/>
+
+    <bean id="someObject1" class="com.springinaction.springidol.SomeClass" >
+
+        <!--    Например, чтобы обратиться к Java классу Math в выражении на языке SpEL,-->
+        <!--    необходимо использовать оператор T(). Предположим, что в свойство компонента необходимо-->
+        <!--    внедрить значение pi. В этом случае достаточно просто обратиться-->
+        <!--    к константе PI в классе Math, как показано ниже-->
+        <property name="multiplier" value="#{ T(java.lang.Math).PI }"/>
     </bean>
 
 
-    <bean id="carl" class="com.springinaction.springidol.Instrumentalist">
-        <!--    ____Обращения к свойству другого компонента____-->
-        <!--    Допустим, что необходимо настроить новый компонент Instrumentalist с идентификатором carl. -->
-        <!--    Карл – необычный музыкант, он – подражатель. Вместо собственного музыкального произведения-->
-        <!--    Карл будет исполнять то же произведение, что исполняет Кенни.-->
-        <property name="song" value="#{kenny.song}"/>
-        <property name="instrument" value="#{saxophone}"/>
-    </bean>
+    <bean id="someObject2" class="com.springinaction.springidol.SomeClass" >
 
-
-
-<!--    ____Обращение к методу другого компонента____-->
-<!--    Возможность обращения к свойствам – не единственное, что-->
-<!--    можно делать с компонентами. Точно так же можно вызывать методы компонентов. -->
-<!--    Например, имеется компонент songSelector с методом selectSong(), -->
-<!--    возвращающим музыкальное произведение для исполнения.-->
-    <bean id="songSelector" class="com.springinaction.springidol.SongSelector"/>
-
-
-<!--    В этом случае Джереми мог бы исполнять произведения, предлагаемые компонентом songSelector:-->
-    <bean id="jeremy" class="com.springinaction.springidol.Instrumentalist">
-        <property name="song" value="#{songSelector.selectSong()}"/>
-        <property name="instrument" value="#{saxophone}"/>
+<!--        Аналогично с помощью оператора T() можно вызывать статические методы. -->
+<!--        Например, ниже показано, как в свойство компонента внедрить случайное число (в диапазоне от 0 до 1)-->
+        <property name="multiplier" value="#{ T(java.lang.Math).random() }"/>
     </bean>
 
 </beans>
