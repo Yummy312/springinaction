@@ -4,31 +4,30 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
  http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 
-<!--    Создание выражений, манипулирующих другими компонентами, – отличное начало. -->
-<!--    Но что, если потребуется вызвать статический метод класса или получить значение константы? -->
-<!--    Для этого необходимо познакомиться с особенностями использования типов-->
-<!--    в языке SpEL-->
-
-<!--   ___ Использование типов ___-->
-<!--    Ключом к использованию методов класса и констант в языке-->
-<!--    SpEL является оператор T() .-->
+    <bean id="counter" class="com.springinaction.springidol.Counter"/>
+    <bean id="circle" class="com.springinaction.springidol.Circle"/>
 
 
-    <bean id="someObject1" class="com.springinaction.springidol.SomeClass" >
+<!--    Язык SpEL поддерживает все основные арифметические операторы, имеющиеся в языке Java, -->
+<!--    плюс оператор «крышки» (^), выполняющий возведение в степень-->
 
-        <!--    Например, чтобы обратиться к Java классу Math в выражении на языке SpEL,-->
-        <!--    необходимо использовать оператор T(). Предположим, что в свойство компонента необходимо-->
-        <!--    внедрить значение pi. В этом случае достаточно просто обратиться-->
-        <!--    к константе PI в классе Math, как показано ниже-->
-        <property name="multiplier" value="#{ T(java.lang.Math).PI }"/>
+    <bean id="someBean" class="com.springinaction.springidol.SomeClass">
+<!--        Например, чтобы сложить два числа, можно воспользоваться оператором +, как показано ниже-->
+        <property name="adjustedAmount" value="#{counter.total + 42}"/>
+
+<!--        Оператор * – умножение:-->
+        <property name="circumference" value="#{ 2 * T(java.lang.Math).PI * circle.radius}"/>
+
+<!--        Оператор / – деление:-->
+        <property name="average" value="#{counter.total / counter.count}"/>
+
+<!--        И оператор % – деление по модулю:-->
+        <property name="remainder" value="#{counter.total % counter.count}"/>
+
+<!--        В отличие от Java, язык SpEL также предлагает оператор возведения в степень:-->
+        <property name="area" value="#{T(java.lang.Math).PI * circle.radius ^ 2}"/>
+
     </bean>
 
-
-    <bean id="someObject2" class="com.springinaction.springidol.SomeClass" >
-
-<!--        Аналогично с помощью оператора T() можно вызывать статические методы. -->
-<!--        Например, ниже показано, как в свойство компонента внедрить случайное число (в диапазоне от 0 до 1)-->
-        <property name="multiplier" value="#{ T(java.lang.Math).random() }"/>
-    </bean>
 
 </beans>

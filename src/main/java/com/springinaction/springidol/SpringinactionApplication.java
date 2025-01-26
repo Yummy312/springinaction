@@ -9,11 +9,13 @@ public class SpringinactionApplication {
 		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(
 				"spring-idol.xml");
 
-		SomeClass someObject1 = context.getBean("someObject1", SomeClass.class);
-		System.out.println(someObject1.getMultiplier()); // 3.141592653589793
+		SomeClass someBean = context.getBean("someBean", SomeClass.class);
+		System.out.println(someBean.getAdjustedAmount());
+		System.out.println(someBean.getCircumference());
+		System.out.println(someBean.getAverage());
+		System.out.println(someBean.getRemainder());
+		System.out.println(someBean.getArea());
 
-		SomeClass someObject2 = context.getBean("someObject2", SomeClass.class);
-		System.out.println(someObject1.getRandomNumber()); // 0.0
 
 
 	}
