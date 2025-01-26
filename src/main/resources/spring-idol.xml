@@ -5,28 +5,24 @@
  http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 
     <bean id="counter" class="com.springinaction.springidol.Counter"/>
-    <bean id="circle" class="com.springinaction.springidol.Circle"/>
 
 
-<!--    Язык SpEL поддерживает все основные арифметические операторы, имеющиеся в языке Java, -->
-<!--    плюс оператор «крышки» (^), выполняющий возведение в степень-->
+<!--    В языке SpEL (Spring Expression Language) можно использовать операторы сравнения,-->
+<!--    такие как в языке Java (например, <, >, <=, >=, ==, !=). Однако при использовании этих операторов-->
+<!--    в конфигурационных XML-файлах могут возникать проблемы, так как XML имеет свои собственные правила синтаксиса,-->
+<!--    и некоторые символы операторов, такие как < и >, имеют специальное значение в XML-->
+<!--    (например, < используется для обозначения начала тега).-->
 
+<!--    Чтобы избежать конфликтов в XML, рекомендуется использовать текстовые эквиваленты операторов SpEL:-->
+
+<!--    lt вместо < (less than — меньше),-->
+<!--    gt вместо > (greater than — больше),-->
+<!--    le вместо <= (less than or equal to — меньше или равно),-->
+<!--    ge вместо >= (greater than or equal to — больше или равно),-->
+<!--    eq вместо == (equal — равно),-->
+<!--    ne вместо != (not equal — не равно).-->
     <bean id="someBean" class="com.springinaction.springidol.SomeClass">
-<!--        Например, чтобы сложить два числа, можно воспользоваться оператором +, как показано ниже-->
-        <property name="adjustedAmount" value="#{counter.total + 42}"/>
-
-<!--        Оператор * – умножение:-->
-        <property name="circumference" value="#{ 2 * T(java.lang.Math).PI * circle.radius}"/>
-
-<!--        Оператор / – деление:-->
-        <property name="average" value="#{counter.total / counter.count}"/>
-
-<!--        И оператор % – деление по модулю:-->
-        <property name="remainder" value="#{counter.total % counter.count}"/>
-
-<!--        В отличие от Java, язык SpEL также предлагает оператор возведения в степень:-->
-        <property name="area" value="#{T(java.lang.Math).PI * circle.radius ^ 2}"/>
-
+        <property name="hasCapacity" value="#{counter.total lt 100}"/>
     </bean>
 
 

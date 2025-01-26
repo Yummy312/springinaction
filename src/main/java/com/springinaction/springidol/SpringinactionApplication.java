@@ -10,11 +10,7 @@ public class SpringinactionApplication {
 				"spring-idol.xml");
 
 		SomeClass someBean = context.getBean("someBean", SomeClass.class);
-		System.out.println(someBean.getAdjustedAmount());
-		System.out.println(someBean.getCircumference());
-		System.out.println(someBean.getAverage());
-		System.out.println(someBean.getRemainder());
-		System.out.println(someBean.getArea());
+		System.out.println(someBean.getHasCapacity());
 
 
 
