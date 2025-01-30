@@ -4,31 +4,20 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
  http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 
-<!--    Это здорово, что имеется возможность выполнять сравнение-->
-<!--    в выражениях на языке SpEL, но что, если потребуется выполнить-->
-<!--    вычисления, опираясь на две операции сравнения? Или, например,-->
-<!--    потребуется инвертировать некоторое логическое значение? -->
-<!--    -->
-<!--    В этом вам помогут логические операторы:-->
-<!--    and — Логическая операция И-->
-<!--    Для того чтобы результатом выражения было значение true, оба операнда должны иметь значение true.-->
+    <bean id="saxophone" class="com.springinaction.springidol.Saxophone"/>
+    <bean id="piano" class="com.springinaction.springidol.Piano"/>
+    <bean id="songSelector" class="com.springinaction.springidol.SongSelector"/>
 
-<!--    or — Логическая операция ИЛИ-->
-<!--    Для того чтобы результатом выражения было значение true, хотя бы один из операндов должен иметь значение true.-->
 
-<!--    not или ! — Логическая операция НЕ-->
-<!--    Инвертирует значение целевого выражения. Если выражение истинно (true), результатом будет ложь (false), и наоборот.-->
-<!--    -->
+<!--    ___Условные вычисления___-->
+<!--    Как быть, если в выражении SpEL потребуется получить одно-->
+<!--    значение при выполнении условия и другое – в противном случае?-->
+<!--    Например, предположим, что Карл (компонент типа Instrumentalist)-->
+<!--    желает исполнять песню «Jingle Bells» только на фортепиано, а другие – на саксофоне. -->
+<!--    В этом случае можно использовать трехместный (тернарный) оператор (?:):-->
 
-    <bean id="shape" class="com.springinaction.springidol.Shape">
-        <property name="kind" value="circle"/>
-        <property name="perimeter" value="150000"/>
+    <bean id="carl" class="com.springinaction.springidol.Instrumentalist">
+        <property name="instrument" value="#{songSelector.selectSong().equals('Jingle Bells') ? piano : saxophone}"/>
     </bean>
-
-<!--    Например, взгляните, как используется оператор and:-->
-    <bean id="someBean" class="com.springinaction.springidol.SomeClass">
-        <property name="largeCircle" value="#{shape.kind eq 'circle' and shape.perimeter gt 10000}"/>
-    </bean>
-
 
 </beans>

@@ -8,9 +8,9 @@ public class SongSelector {
 
     // Коллекция песен в виде строк (названия песен)
     private final List<String> songs = Arrays.asList(
-            "'Jingle Bells'",
-            "'Merry Christmas'",
-            "'Happy New Year'"
+            "Jingle Bells",
+            "Merry Christmas",
+            "Happy New Year"
     );
 
     // Метод для случайного выбора названия песни
