@@ -1,23 +1,34 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans
- http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/util https://www.springframework.org/schema/util/spring-util.xsd">
 
-    <bean id="saxophone" class="com.springinaction.springidol.Saxophone"/>
-    <bean id="piano" class="com.springinaction.springidol.Piano"/>
-    <bean id="songSelector" class="com.springinaction.springidol.SongSelector"/>
+<!--        ____Обработка коллекций на языке SpEL____-->
 
+<!--    Для примера имеется некоторый класс City,-->
+<!--    и что требуется сконфигурировать список объектов City с помощью элемента <util:list>,-->
+<!--    как показано ниже.-->
+    <util:list id="cities">
 
-<!--    ___Условные вычисления___-->
-<!--    Как быть, если в выражении SpEL потребуется получить одно-->
-<!--    значение при выполнении условия и другое – в противном случае?-->
-<!--    Например, предположим, что Карл (компонент типа Instrumentalist)-->
-<!--    желает исполнять песню «Jingle Bells» только на фортепиано, а другие – на саксофоне. -->
-<!--    В этом случае можно использовать трехместный (тернарный) оператор (?:):-->
-
-    <bean id="carl" class="com.springinaction.springidol.Instrumentalist">
-        <property name="instrument" value="#{songSelector.selectSong().equals('Jingle Bells') ? piano : saxophone}"/>
-    </bean>
+        <bean class="com.springinaction.springidol.City"
+              p:name="Chicago" p:state="IL" p:population="2853114"
+        />
+        <bean class="com.springinaction.springidol.City"
+              p:name="Atlanta" p:state="GA" p:population="537958"
+        />
+        <bean class="com.springinaction.springidol.City"
+              p:name="Dallas" p:state="TX" p:population="1279910"
+        />
+        <bean class="com.springinaction.springidol.City"
+              p:name="Houston" p:state="TX" p:population="2242193"
+        />
+    </util:list>
+    <!--    Элемент <util:list> определен в пространстве имен util фреймворка Spring. Фактически он создает
+            компонент типа java.util.List,-->
+    <!--    содержащий все значения или компоненты, перечисленные в нем.-->
+    <!--    В данном случае это список из четырех компонентов City-->
 
 </beans>
