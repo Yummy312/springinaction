@@ -1,13 +1,13 @@
 package com.springinaction.springidol;
 public class SomeClass {
 
-    private boolean hasCapacity;
+    private boolean largeCircle;
 
-    public boolean getHasCapacity() {
-        return hasCapacity;
+    public boolean getLargeCircle() {
+        return largeCircle;
     }
 
-    public void setHasCapacity(boolean hasCapacity) {
-        this.hasCapacity = hasCapacity;
+    public void setLargeCircle(boolean largeCircle) {
+        this.largeCircle = largeCircle;
     }
 }
