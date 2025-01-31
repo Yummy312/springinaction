@@ -11,8 +11,8 @@ public class SpringinactionApplication {
 		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(
 				"spring-idol.xml");
 
-		List<City> cities = context.getBean("cities", List.class);
-		System.out.println(cities.get(1).getName());
+		SomeClass someBean = context.getBean("someBean", SomeClass.class);
+		System.out.println(someBean.getChosenCity().getName()); //Atlanta
 
 	}
 

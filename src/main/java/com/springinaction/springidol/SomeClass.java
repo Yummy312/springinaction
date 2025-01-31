@@ -1,13 +1,13 @@
 package com.springinaction.springidol;
 public class SomeClass {
 
-    private boolean largeCircle;
+    private Location chosenCity;
 
-    public boolean getLargeCircle() {
-        return largeCircle;
+    public Location getChosenCity() {
+        return chosenCity;
     }
 
-    public void setLargeCircle(boolean largeCircle) {
-        this.largeCircle = largeCircle;
+    public void setChosenCity(Location chosenCity) {
+        this.chosenCity = chosenCity;
     }
 }

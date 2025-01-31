@@ -6,11 +6,8 @@
         http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/util https://www.springframework.org/schema/util/spring-util.xsd">
 
-<!--        ____Обработка коллекций на языке SpEL____-->
 
-<!--    Для примера имеется некоторый класс City,-->
-<!--    и что требуется сконфигурировать список объектов City с помощью элемента <util:list>,-->
-<!--    как показано ниже.-->
+
     <util:list id="cities">
 
         <bean class="com.springinaction.springidol.City"
@@ -26,9 +23,16 @@
               p:name="Houston" p:state="TX" p:population="2242193"
         />
     </util:list>
-    <!--    Элемент <util:list> определен в пространстве имен util фреймворка Spring. Фактически он создает
-            компонент типа java.util.List,-->
-    <!--    содержащий все значения или компоненты, перечисленные в нем.-->
-    <!--    В данном случае это список из четырех компонентов City-->
+
+<!--    ____Доступ к элементам коллекции____-->
+<!--    Одни из самых необычных особенностей языка SpEL связаны-->
+<!--    с обработкой коллекций. Сослаться на отдельный элемент коллекции в языке SpEL можно точно так же, -->
+<!--    как в языке Java.-->
+<!--    Чаще всего бывает необходимо извлечь из списка единственный-->
+<!--    элемент и внедрить его в свойство:-->
+    <bean id="someBean" class="com.springinaction.springidol.SomeClass">
+        <property name="chosenCity" value="#{cities[1]}"/>
+    </bean>
+
 
 </beans>
