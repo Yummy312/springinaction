@@ -1,9 +1,7 @@
 package com.springinaction.springidol;
 import com.springinaction.springidol.exceptions.PerformanceException;
-
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import java.util.List;
 
 public class SpringinactionApplication {
 
@@ -11,8 +9,12 @@ public class SpringinactionApplication {
 		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(
 				"spring-idol.xml");
 
-		SomeClass someBean = context.getBean("someBean", SomeClass.class);
-		System.out.println(someBean.getCityNames().toString()); //[Chicago, Atlanta, Dallas, Houston]
+		Instrumentalist kenny = context.getBean("kenny", Instrumentalist.class);
+		kenny.perform(); // Playing Jingle Bells : TOOT TOOT TOOT
+
+
+		Instrumentalist david = context.getBean("david", Instrumentalist.class);
+		david.perform(); // Playing Jingle Bells : TOOT TOOT TOOT
 
 
 	}
