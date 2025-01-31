@@ -1,13 +1,16 @@
 package com.springinaction.springidol;
+
+import java.util.List;
+
 public class SomeClass {
 
-    private Location chosenCity;
+    private List<String> cityNames;
 
-    public Location getChosenCity() {
-        return chosenCity;
+    public List<String> getCityNames() {
+        return cityNames;
     }
 
-    public void setChosenCity(Location chosenCity) {
-        this.chosenCity = chosenCity;
+    public void setCityNames(List<String> cityNames) {
+        this.cityNames = cityNames;
     }
 }

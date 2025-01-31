@@ -12,7 +12,8 @@ public class SpringinactionApplication {
 				"spring-idol.xml");
 
 		SomeClass someBean = context.getBean("someBean", SomeClass.class);
-		System.out.println(someBean.getChosenCity().getName()); //Atlanta
+		System.out.println(someBean.getCityNames().toString()); //[Chicago, Atlanta, Dallas, Houston]
+
 
 	}
 
