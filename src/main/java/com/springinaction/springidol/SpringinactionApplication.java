@@ -17,6 +17,11 @@ public class SpringinactionApplication {
 		david.perform(); // Playing Jingle Bells : TOOT TOOT TOOT
 
 
+		Instrumentalist frank = context.getBean("frank", Instrumentalist.class);
+		frank.perform(); // Playing Mary had a little lamb : TOOT TOOT TOOT
+
+
+
 	}
 
 
