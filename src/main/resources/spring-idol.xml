@@ -7,35 +7,27 @@
         http://www.springframework.org/schema/util https://www.springframework.org/schema/util/spring-util.xsd">
 
 
-    <bean id="saxophone" class="com.springinaction.springidol.Saxophone"/>
+        <bean id="harry" class="com.springinaction.springidol.Magican">
+            <property name="magicBox" ref="magicBox"/>
+            <property name="magicWords" value="Bippity boppity boo"/>
+        </bean>
 
-    <bean id="baseSaxophonist"
-          class="com.springinaction.springidol.Instrumentalist"
-          abstract="true"
-    >
-        <property name="instrument" ref="saxophone"/>
-        <property name="song" value="Jingle Bells"/>
-    </bean>
+        <bean id="magicBox" class="com.springinaction.springidol.MagicBoxImpl">
+            <replaced-method
+                    name="getContents"
+                    replacer="tigerReplacer"
+            />
+<!--            Как следует из названия, этот элемент используется-->
+<!--            для замены метода новой реализацией. В данном случае атрибут name-->
+<!--            указывает имя замещаемого метода getContents(). А атрибут replacer-->
+<!--            ссылается на компонент tigerReplacer, реализующий замену.-->
 
-    <bean id="kenny" parent="baseSaxophonist"/>
-    <bean id="david" parent="baseSaxophonist"/>
+<!--            Т.е таким образом мы сделали замещение метода getContents(),-->
+<!--            возвращающего строку «A beautiful assistant», иной реализацией,-->
+<!--            которая создает тигра-->
+        </bean>
 
-<!--    ___Переопределение наследуемых свойств___-->
-
-<!--    Предположим , что на конкурсе появился еще один саксофонист-->
-<!--    (я говорил, что это будет происходить). Но вместо «Jingle Bells»-->
-<!--    он будет исполнять мелодию «Mary Had a Little Lamb». Означает-->
-<!--    ли это невозможность переопределения baseSaxophonist, когда будет-->
-<!--    объявляться новый участник?-->
-
-<!--    Конечно нет. Мы все еще можем наследовать компонент baseSaxophonist.-->
-<!--    Но вместо того чтобы использовать значения всех наследуемых свойств,-->
-<!--    можно переопределить свойство song. Ниже следует-->
-<!--    объявление нового саксофониста:-->
-
-    <bean id="frank" parent="baseSaxophonist">
-        <property name="song" value="Mary had a little lamb" />
-    </bean>
+        <bean id="tigerReplacer" class="com.springinaction.springidol.TigerReplacer"/>
 
 
 </beans>
