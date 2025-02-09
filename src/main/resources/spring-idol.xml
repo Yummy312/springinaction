@@ -2,32 +2,43 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:p="http://www.springframework.org/schema/p"
        xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:aop="http://www.springframework.org/schema/aop"
        xsi:schemaLocation="
         http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
-        http://www.springframework.org/schema/util https://www.springframework.org/schema/util/spring-util.xsd">
+        http://www.springframework.org/schema/util https://www.springframework.org/schema/util/spring-util.xsd
+        http://www.springframework.org/schema/aop
+        https://www.springframework.org/schema/aop/spring-aop.xsd">
 
 
-        <bean id="harry" class="com.springinaction.springidol.Magican">
-            <property name="magicBox" ref="magicBox"/>
-            <property name="magicWords" value="Bippity boppity boo"/>
-        </bean>
 
-        <bean id="magicBox" class="com.springinaction.springidol.MagicBoxImpl">
-            <replaced-method
-                    name="getContents"
-                    replacer="tigerReplacer"
-            />
-<!--            Как следует из названия, этот элемент используется-->
-<!--            для замены метода новой реализацией. В данном случае атрибут name-->
-<!--            указывает имя замещаемого метода getContents(). А атрибут replacer-->
-<!--            ссылается на компонент tigerReplacer, реализующий замену.-->
+    <!--                         ______Внедрение не-Spring компонентов_______-->
+<!--    Контейнер Spring может настраивать только те компоненты, экземпляры которых он создает сам.-->
+<!--    Однако в некоторых случаях объекты могут создаваться не самим Spring-контейнером, а внешними библиотеками-->
+<!--    или механизмами, например, через ORM (Hibernate, iBATIS) или веб-контейнеры (например, для JSP-тегов).-->
+<!--    В таких ситуациях Spring не может настроить эти объекты.-->
 
-<!--            Т.е таким образом мы сделали замещение метода getContents(),-->
-<!--            возвращающего строку «A beautiful assistant», иной реализацией,-->
-<!--            которая создает тигра-->
-        </bean>
+<!--    К счастью, в версии Spring 2.0 появилась возможность декларативно настраивать компоненты, экземпляры которых-->
+<!--    создаются за пределами Spring. Суть в том, что Spring настраивает компоненты, но не создает их экземпляры-->
 
-        <bean id="tigerReplacer" class="com.springinaction.springidol.TigerReplacer"/>
+    <bean id="pianist"
+          class="com.springinaction.springidol.Instrumentalist"
+          abstract="true">
+        <property name="song" value="Chopsticks" />
+        <property name="instrument">
+            <bean class="com.springinaction.springidol.Piano" />
+        </property>
+    </bean>
 
-
+<!--    В таком объявлении компонента нет ничего необычного. Компонент pianist объявляется как объект класса Instrumentalist.-->
+<!--    А его свойства song и instrument связываются со своими значениями. Это самый заурядный компонент Spring,-->
+<!--    за исключением одной маленькой детали: его атрибут abstract имеет значение true.-->
+<!--    -->
+<!--    Как рассказывалось выше, атрибут abstract со значением true сообщает фреймворку Spring, что для этого компонента-->
+<!--    не требуется создавать экземпляр класса. Этот прием часто используется при объявлении родительских компонентов,-->
+<!--    которые будут расширяться дочерними компонентами. Но в данном случае мы просто указываем фреймворку Spring, что компонент-->
+<!--    pianist не должен создаваться им, – это будет сделано без участия фреймворка.-->
+<!--    -->
+<!--    На самом деле компонент pianist служит для Spring лишь шаблоном настройки экземпляров Instrumentalist, созданных-->
+<!--    за его пределами. После определения шаблона необходим некоторый способ связывания его с классом Instrumentalist.-->
+<!--    Для этого нужно аннотировать класс Instrumentalist аннотацией @Configurable-->
 </beans>

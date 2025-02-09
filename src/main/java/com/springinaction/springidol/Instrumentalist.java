@@ -1,11 +1,9 @@
 package com.springinaction.springidol;
-
 import com.springinaction.springidol.exceptions.PerformanceException;
+import org.springframework.beans.factory.annotation.Configurable;
 
-//Для демонстрации другой формы DI пригласим на сцену нашего
-//следующего участника. Кенни (Kenny) – талантливый музыкант,
-//как определено классом Instrumentalist
 
+@Configurable("pianist")
 public class Instrumentalist implements Performer {
 
     public Instrumentalist() {
@@ -30,3 +28,14 @@ public class Instrumentalist implements Performer {
     }
 
 }
+
+// Аннотация @Configurable играет двоякую роль:
+//   1) во-первых, она показывает, что экземпляр класса Instrumentalist
+//      может быть сконфигурирован фреймворком Spring, даже при создании за его пределами;
+//   2) она также связывает класс Instrumentalist и компонент с идентификатором pianist.
+//      При настройке экземпляра класса Instrumentalist фреймворк Spring будет использовать определение
+//      компонента pianist как шаблон.
+
+// Но как Spring узнает, как настраивать компоненты с аннотацией
+// @Configurable? За это отвечает следующий элемент в конфигурации Spring:
+// <aop:spring-configured />

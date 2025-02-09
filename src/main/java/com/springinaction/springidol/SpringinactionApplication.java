@@ -9,10 +9,7 @@ public class SpringinactionApplication {
 		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(
 				"spring-idol.xml");
 
-		Magican harry = context.getBean("harry", Magican.class);
-		harry.perform();	// Bippity boppity boo
-							// The magic box contains...
-							// A ferocious tiger
+
 
 
 	}
