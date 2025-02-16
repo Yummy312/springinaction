@@ -1,42 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:p="http://www.springframework.org/schema/p"
-       xmlns:util="http://www.springframework.org/schema/util"
-       xmlns:aop="http://www.springframework.org/schema/aop"
-       xsi:schemaLocation="
-        http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
-        http://www.springframework.org/schema/util https://www.springframework.org/schema/util/spring-util.xsd
-        http://www.springframework.org/schema/aop
-        https://www.springframework.org/schema/aop/spring-aop.xsd">
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        https://www.springframework.org/schema/context/spring-context.xsd">
 
 
-<!--      ___Автоматическое связывание компонентов: Смешивание автоматического и явного связывания___-->
+<!--        Подключаем поддержку аннотаций-->
+       <context:annotation-config/>
+
+
+
+
+<!--    ___Связывание посредством аннотаций: Использование аннотации @Autowired___-->
 
     <bean id="saxophone" class="com.springinaction.springidol.Saxophone"/>
 
-
-
-
-<!--    Использование механизма автоматического связывания не означает, что нельзя явно связывать-->
-<!--    некоторые свойства. Вы все еще можете использовать элемент <property> для описания любого свойства,-->
-<!--    как если бы не использовали автоматическое связывание.-->
-
-<!--    Например, чтобы явно связать свойство instrument компонента kenny, даже при том, что для этого-->
-<!--    компонента определено использование автоматического связывания по типу, можно использовать-->
-<!--    следующее определение:-->
-    <bean id="kenny"
-          class="com.springinaction.springidol.Instrumentalist"
-          autowire="byType"
-    >
-        <property name="song" value="Jingle Bells"/>
-        <property name="instrument" ref="saxophone"/>
-    </bean>
-
-<!--    Как видно из этого примера, смешивание автоматического и явного связывания – отличный способ устранить-->
-<!--    неоднозначности, возникающие при автоматическом связывании по типу (byType). В конфигурации Spring-->
-<!--    может быть определено несколько компонентов, реализующих интерфейс Instrument. Чтобы предотвратить-->
-<!--    появление исключения, вызванного неопределенностью выбора из нескольких компонентов типа Instrument,-->
-<!--    можно явно связать свойство instrument, фактически исключив его из процедуры автоматического связывания.-->
+<!--    Теперь у нас пропала надобность в элементе <property>, связывающий свойство-->
+<!--    instrument компонента типа Instrumentalist. Когда фреймворк обнаружит, что метод setInstrument()-->
+<!--    снабжен аннотацией @Autowired, он попытается выполнить автоматическое связывание по типу (byType)-->
+    <bean id="kenny" class="com.springinaction.springidol.Instrumentalist"/>
 
 
 </beans>
