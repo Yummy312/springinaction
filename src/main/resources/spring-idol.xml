@@ -7,10 +7,20 @@
         http://www.springframework.org/schema/context
         https://www.springframework.org/schema/context/spring-context.xsd">
 
+                <!--    ___Автоматическое определение компонентов___-->
 
-<!--        Подключаем поддержку аннотаций-->
-       <context:annotation-config/>
+<!--    Когда в конфигурацию Spring добавляется элемент <context:annotation-config>, он сообщает фреймворку-->
+<!--    о необходимости учитывать аннотации в компонентах при их связывании. Даже при том,-->
+<!--    что применение элемента <context:annotation-config> способно помочь избавиться от большинства-->
+<!--    элементов <property> и <constructor-arg>в файле конфигурации, это не избавляет от необходимости объявлять-->
+<!--    компоненты с помощью элемента <bean>.-->
 
+<!--    Но у фреймворка Spring есть в запасе еще одна хитрость. Элемент <context:component-scan>-->
+<!--    делает все то же, что и элемент <context: annotation-config>, плюс он настраивает фреймворк-->
+<!--    на автоматическое определение компонентов и их объявление.-->
+    <context:component-scan
+            base-package="com.springinaction.springidol">
+    </context:component-scan>
 
 
     <bean id="saxophone" class="com.springinaction.springidol.Saxophone"/>
