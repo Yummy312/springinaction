@@ -1,6 +1,7 @@
 package com.springinaction.springidol;
 import com.springinaction.springidol.exceptions.PerformanceException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 
 
 public class Instrumentalist implements Performer {
@@ -24,12 +25,12 @@ public class Instrumentalist implements Performer {
     private Instrument instrument;
 
 
-
-//    Определим необязательное автоматическое связывание, установив атрибут required аннотации
-//    @Autowired в значение false. В этом случае Spring попытается связать свойство instrument,
-//    но если он не найдет подходящего компонента типа Instrument, ничего страшного не произойдет.
-//    Свойство просто получит значение null
     @Autowired(required = false)
+
+//    Чтобы гарантировать, что Spring выберет пианино для компонента kenny, даже если существуют другие компоненты,
+//    которые могут быть связаны с его свойством instrument, можно добавить аннотацию @Qualifier, ссылающуюся на компонент
+//    с именем piano:
+    @Qualifier("piano")
     public void setInstrument(Instrument instrument) { // Внедрение
         this.instrument = instrument; // инструмент
     }
