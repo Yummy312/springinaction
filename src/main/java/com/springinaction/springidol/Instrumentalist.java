@@ -23,19 +23,18 @@ public class Instrumentalist implements Performer {
     }
     private Instrument instrument;
 
-//    Предположим, что необходимо с помощью аннотации @Autowired
-//    обеспечить автоматическое внедрение значения в свойство instrument
-//    компонента Instrumentalist. Для этого можно аннотировать метод
-//    setInstrument(), как показано ниже:
-    @Autowired
+
+
+//    Определим необязательное автоматическое связывание, установив атрибут required аннотации
+//    @Autowired в значение false. В этом случае Spring попытается связать свойство instrument,
+//    но если он не найдет подходящего компонента типа Instrument, ничего страшного не произойдет.
+//    Свойство просто получит значение null
+    @Autowired(required = false)
     public void setInstrument(Instrument instrument) { // Внедрение
         this.instrument = instrument; // инструмент
     }
 
 
-//    Самая интересная особенность аннотации @Autowired состоит в
-//    том, что ее необязательно применять к методу записи. Эту аннотацию можно применить к любому методу.
 
-//    Также аннотацию @Autowired можно даже применить к конструктору.
 
 }

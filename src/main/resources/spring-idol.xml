@@ -13,14 +13,7 @@
 
 
 
-
-<!--    ___Связывание посредством аннотаций: Использование аннотации @Autowired___-->
-
     <bean id="saxophone" class="com.springinaction.springidol.Saxophone"/>
-
-<!--    Теперь у нас пропала надобность в элементе <property>, связывающий свойство-->
-<!--    instrument компонента типа Instrumentalist. Когда фреймворк обнаружит, что метод setInstrument()-->
-<!--    снабжен аннотацией @Autowired, он попытается выполнить автоматическое связывание по типу (byType)-->
     <bean id="kenny" class="com.springinaction.springidol.Instrumentalist"/>
 
 
