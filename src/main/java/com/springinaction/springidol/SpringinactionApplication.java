@@ -9,9 +9,8 @@ public class SpringinactionApplication {
 		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(
 				"spring-idol.xml");
 
-		Instrumentalist eddie = context.getBean("eddie", Instrumentalist.class);
-
-		eddie.perform();
+		Performer duke = context.getBean("duke", Juggler.class);
+		duke.perform();
 
 
 	}
